@@ -1,14 +1,14 @@
 var map;
 
 //Load Google Maps API
-function loadScript() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-        '&signed_in=false&callback=initialize';
-    document.body.appendChild(script);
-}
-window.onload = loadScript;
+//function loadScript() {
+    //var script = document.createElement('script');
+    //script.type = 'text/javascript';
+    //script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+        //'&signed_in=false&callback=initialize';
+    //document.body.appendChild(script);
+//}
+//window.onload = loadScript;
 
 //Use to populate info about locations
 var markers = [{
@@ -105,7 +105,7 @@ function initialize() {
             map.setCenter(mapOptions.center);
         }
     }
-    $("#reset").click(function() {
+    $(".reset").click(function() {
         resetMap();
     });
     $(window).resize(function() {
@@ -177,7 +177,7 @@ function setMarkers(location) {
         })(location[i].holdMarker, i));
 
         //Click nav list item to view & center info window
-        $('#nav' + i).click((function(marker, i) {
+        $("#nav" + i).click((function(marker, i) {
             return function() {
                 infowindow.setContent(location[i].contentString);
                 infowindow.open(map, marker);
@@ -203,7 +203,7 @@ function setMarkers(location) {
         new google.maps.event.addListener(location[i].holdMarker, 'click', (function(marker, i) {
             return function() {
                 $('li.active').removeClass('active');
-                $('#nav' + i).addClass('active');
+                $("#nav" + i).addClass('active');
             };
         })(location[i].holdMarker, i));
 
@@ -213,12 +213,12 @@ function setMarkers(location) {
         });
 
         //Close info windows when resetting map
-        $("#reset").click(function() {
+        $(".reset").click(function() {
             infowindow.close();
         });
 
         //Remove active highlighting from list when page is reset
-        $("#reset").click(function() {
+        $(".reset").click(function() {
             $('li.active').removeClass('active');
         });
     }
@@ -247,7 +247,7 @@ viewModel.markers = ko.dependentObservable(function() {
 ko.applyBindings(viewModel);
 
 //Hide markers based on input
-$("#input").keyup(function() {
+$(".input").keyup(function() {
     setAllMap();
 });
 
@@ -255,11 +255,11 @@ $("#input").keyup(function() {
 var navVisibility = true;
 
 function invisibleNav() {
-    $("#nav").animate({
+    $(".nav").animate({
         height: 0,
     }, 500);
     setTimeout(function() {
-        $("#nav").hide();
+        $(".nav").hide();
     }, 500);
     $("#arrow").removeClass("fa fa-angle-double-up");
     $("#arrow").addClass("fa fa-angle-double-down");
@@ -267,9 +267,9 @@ function invisibleNav() {
 }
 
 function visibleNav() {
-    $("#nav").show();
-    var scrollerHeight = $("#list").height();
-    $("#nav").animate({
+    $(".nav").show();
+    var scrollerHeight = $(".list").height();
+    $(".nav").animate({
         height: scrollerHeight,
     }, 500, function() {
         $(this).css('height', 'auto').css("max-height", 496);
