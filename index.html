@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seattle Views</title>
+    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+</head>
+<body>
+    <div id="canvas"></div>
+    <div id="left-side-container">
+        <div id="nav">
+            <div id="search-box">
+                <input id="input" placeholder="Search…" type="input" 
+                data-bind="textInput: query, valueUpdate: 'keydown'"
+                autocomplete="off"></input>
+            </div>
+            <div id="list">
+                <ul data-bind="template: {name: 'marker', foreach:markers}">
+                </ul>
+                <script type="text/html" id="marker">
+                    <div class="location-entry" data-bind="visible: visible">
+                        <a>
+                            <li class="infoWindow" href="#" data-bind="attr: {id: id}">
+                                <strong data-bind="text: title"></strong>
+                                <p data-bind="text: address"></p>
+                                <p data-bind="text: cityState"></p>
+                            </li>
+                        </a>
+                    </div>
+                </script>
+            </div>
+        </div>
+        <div id="nav-hide-btn-container">
+            <a href="#" id="nav-hide-btn" class="btn btn-circle page-scroll">
+                <i id="arrow" class="fa fa-angle-double-up" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <div class="right-btn-container">
+        <a href="https://github.com/jamesrivera/neighborhood-map/blob/master/README.md"
+            target="_blank">
+            <button id="about">About</button>
+        </a>
+        <button id="reset">Reset Map</button>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.4.0.js"></script>
+    <script type="text/javascript" src="js/fontawesome-markers.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
